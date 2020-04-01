@@ -27,4 +27,4 @@ function objToSql(ob) {
 
 
 
-module.exports = orm.js;
+module.exports = orm;
