@@ -39,7 +39,7 @@ var orm = {
     var dbQuery =
       "INSERT INTO " +
       table +
-      "(" +
+      " (" +
       "VALUES (" +
       printQuestionMarks(vals.length) +
       ") ";
