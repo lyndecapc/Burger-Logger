@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 require("dotenv").config();
 
-var PORT = process.env.PORT || 8000;
+var PORT = process.env.PORT || 8080;
 var app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
