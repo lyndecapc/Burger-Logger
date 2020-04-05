@@ -22,7 +22,12 @@ router.post("/api/burgers", function (req, res) {
 })
 
 // put route -> back to index
-
+router.put("/api/burgers/:id", function(req,res) {
+  burger.updateOne(req,params.id, function(result) {
+    console.log(result)
+    res.sendStatus(200)
+  })
+})
 
 
 module.exports = router;
