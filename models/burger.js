@@ -12,19 +12,13 @@ var burger = {
             cb(res);
         });
     },
-    
+
     updateOne: function (objColVals, condition, cb) {
         orm.updateOne("burgers", condition, function (res) {
             cb(res);
         });
-    },
-
-    deletOne: function (condition, cb) {
-        orm.deleteOne("burgers", condition, function (res) {
-            cb(res);
-        });
     }
-};
+}
 
 
 module.exports = burger;
