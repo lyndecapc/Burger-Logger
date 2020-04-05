@@ -4,43 +4,23 @@
 var connection = require("./connection.js");
 
 var orm = {
-  selectAll: function(table, cb) {
-    var dbQuery = "SELECT * FROM " + table + ";";
-
-    connection.query(dbQuery, function(err, res) {
-      if (err) {
-        throw err;
-      }
-      cb(res);
-    });
+  selectAll: function(tableName, cbModel){
+    connection.query("select * from ?? ", tableName, function(err,data){
+      cbModel(data)
+    })
   },
-  insertOne: function(table, cols, vals, cb) {
-    var dbQuery =
-      "INSERT INTO " +
-      table +
-      " (" +
-      "VALUES (" +
-      printQuestionMarks(vals.length) +
-      ") ";
-
-    console.log(dbQuery);
-    connection.query(dbQuery, vals, function(err, res) {
-      if (err) {
-        throw err;
-      }
-      cb(res);
-    });
+  insertOne: function(tableName, columnNames, values, cbModel){
+var sqlStatement =     connection.query("insert into ?? (??, ??) values(?, ?)", [tableName, columnNames[0], columnNames[1], values[0], values[1]], function(err,data){
+      cbModel(data)
+    })
+    console.log(sqlStatement.sql)
   },
-  updateOne: function(table, objColVals, condition, cb) {
-    var dbQuery =
-      "UPDATE " +
-      table +
-      " SET " +
-      objToSql(objColVals) +
-      " WHERE " +
-      condition;
+   updateOne: function(tableName, columnNames, values, cbModel){
+   var sqlStatement =   connection.query("update ?? set ?? = ? where ?? = ?", [tableName, columnNames[0], values[0], columnNames[1], values[1]], function(error, data){
+       cbModel(data)
+     })
 
-    console.log(dbQuery);
+     console.log(sqlStatement.sql)
   }
 }
 
